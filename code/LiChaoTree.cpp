@@ -2,6 +2,7 @@
 #include <utility>
 
 LiChaoTree::LiChaoTree() {
+  count = 0;
   root = new Node*;
   *root = nullptr;
 }
@@ -13,6 +14,7 @@ Node* LiChaoTree::init_node(int lo, int hi) {
 }
 
 void LiChaoTree::insert(Line* line) {
+  count += 1;
   if (*root == nullptr) {
     Node* new_node = init_node(LO, HI);
     new_node->line = (line);
@@ -49,7 +51,7 @@ void LiChaoTree::insert_helper(Node* node, Line* line) {
 
   // determine if we push left or right
   if (loser->evaluate(hi) < winner->evaluate(hi)) {
-    // push left
+    // push right
     if (node->right == nullptr) {
       node->right = init_node(mid, hi);
     }
@@ -60,6 +62,27 @@ void LiChaoTree::insert_helper(Node* node, Line* line) {
       node->left = init_node(lo, mid);
     }
     insert_helper(node->left, loser);
+  }
+}
+
+void LiChaoTree::remove(Line* line) {
+  LiChaoTree* new_tree = new LiChaoTree();
+  rebuild(new_tree, *root, line);
+  count = new_tree->count;
+  *root = *new_tree->root;
+  delete new_tree;
+}
+
+void LiChaoTree::rebuild(LiChaoTree* new_tree, Node* node, Line* line) {
+  if (node != nullptr) {
+    rebuild(new_tree, node->left, line);
+    rebuild(new_tree, node->right, line);
+
+    if (line != node->line) {
+      new_tree->insert(node->line);
+    } else {
+      delete node;
+    }
   }
 }
 
@@ -77,14 +100,18 @@ Line* LiChaoTree::query(int val) {
       winner = cursor->line;
     }
 
-    // calculate the midpoint
-    int lo = cursor->get_lo();
-    int hi = cursor-> get_hi();
-    int mid = cursor->calculate_mid();
-
     // update the cursor left or right
+    int mid = cursor->calculate_mid();
     cursor = val < mid ? cursor->left : cursor->right;
   }
 
   return winner;
+}
+
+int LiChaoTree::size() {
+  return count;
+}
+
+bool LiChaoTree::isEmpty() {
+  return *root == nullptr;
 }

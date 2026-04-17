@@ -25,6 +25,9 @@ class Line {
     // for m and k, which ensures that these values are publically
     // accessible while remaining immutable.
     void details(int& _m, int& _k);
+
+    // prints the line details in the format "y = mx + k"
+    void print_details();
 };
 
 #endif
