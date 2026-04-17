@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Line.h"
 
 Line::Line(int _m, int _k) {
