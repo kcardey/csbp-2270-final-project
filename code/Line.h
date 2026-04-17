@@ -1,10 +1,6 @@
 #ifndef Line_H__
 #define Line_H__
 
-#include <string>
-
-using namespace std;
-
 // Line effectively stores the slope and offset of a linear function
 // of the form y = mx + k. In the context of the Li Chao tree, it is
 // the 'data' that is being stored in each node.
