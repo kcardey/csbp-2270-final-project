@@ -27,6 +27,13 @@ int main() {
 
   int val;
 
+  cout << endl;
+  cout << "Li Chao Tree" << endl;
+  cout << "====================" << endl;
+  tree->print_tree(tree->get_root(), 0);
+  cout << "====================" << endl;
+  cout << endl;
+
   // get value input from the user
   while(true) {
     cout << "Enter a number between " << LO << " and " << HI <<": ";
@@ -70,6 +77,6 @@ int main() {
   cout << "y = " << m << "x + " << k << endl;
   cout << "y = " << winner->evaluate(val) << endl;
   cout << endl;
-  
+
   return 0;
 }

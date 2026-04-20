@@ -63,8 +63,16 @@ class LiChaoTree {
     // size returns the number of nodes in the Li Chao Tree
     int size();
 
-    // isEmpty returns true when the root node is null
-    bool isEmpty();
+    // is_empty returns true when the root node is null
+    bool is_empty();
+
+    // get_root returns the root node of the Li Chao Tree
+    Node* get_root();
+
+    // print_tree gives a visual representation of the tree in the
+    // console by printing the details for a specific node and then
+    // recursively printing its children nodes
+    void print_tree(Node* node, int depth);
 };
 
 #endif

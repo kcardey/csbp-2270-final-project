@@ -1,5 +1,8 @@
 #include "LiChaoTree.h"
+#include <iostream>
 #include <utility>
+
+using namespace std;
 
 LiChaoTree::LiChaoTree() {
   count = 0;
@@ -112,6 +115,35 @@ int LiChaoTree::size() {
   return count;
 }
 
-bool LiChaoTree::isEmpty() {
+bool LiChaoTree::is_empty() {
   return *root == nullptr;
+}
+
+Node* LiChaoTree::get_root() {
+  return *root;
+}
+
+void LiChaoTree::print_tree(Node* node, int depth) {
+  if (node == nullptr) return;
+
+    // indent based on depth
+    for (int i = 0; i < depth; i++) {
+      cout << "  ";
+    }
+
+    cout << "[" << node->get_lo() << ", " << node->get_hi() << "] ";
+    
+    if (node->line != nullptr) {
+      int m, k;
+      node->line->details(m, k);
+      cout << "Line: y = " << m << "x + " << k;
+    } else {
+      cout << "Line: None";
+    }
+
+    cout << endl;
+
+    // recursively print children
+    print_tree(node->left, depth + 1);
+    print_tree(node->right, depth + 1);
 }
