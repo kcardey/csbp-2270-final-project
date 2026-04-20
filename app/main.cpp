@@ -39,8 +39,6 @@ int main() {
     cout << endl;
     cout << "Please enter a valid number" << endl;
   }
-  
-  
 
   // query the tree for the winner
   Line* winner = tree->query(val);
@@ -54,6 +52,24 @@ int main() {
   int k;
   winner->details(m, k);
   cout << "y = " << m << "x + " << k << endl;
+  cout << "y = " << winner->evaluate(val) << endl;
+  cout << endl;
 
+  // remove the winning line from the tree
+  cout << "Removing winning line from the tree..." << endl;
+  cout << endl;
+  tree->remove(winner);
+
+  winner = tree->query(val);
+  // display this info to the user
+  cout << endl;
+  cout << "Line Winner (Second Place)" << endl;
+  cout << "====================" << endl;
+
+  winner->details(m, k);
+  cout << "y = " << m << "x + " << k << endl;
+  cout << "y = " << winner->evaluate(val) << endl;
+  cout << endl;
+  
   return 0;
 }

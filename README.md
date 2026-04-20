@@ -70,6 +70,6 @@ cmake ..
 make && ./final-project
 ```
 
-The program load 10 values from a *lines.txt* file, creates a Line instance for each one, and inserts them into the Li Chao Tree. It then prompts the user to enter a number value between a global min a max. Once entered, it queries the Li Chao tree for the winning line and displays this to the user.
+The program load 10 values from a *lines.txt* file, creates a Line instance for each one, and inserts them into the Li Chao Tree. It then prompts the user to enter a number value between a global min a max. Once entered, it queries the Li Chao tree for the winning line and displays this to the user. Then, it removes the winning line from the tree and runs the query again, effectively giving the user the second place line.
 
 For a visual representation of each line, I highly recommend using desmos.com.
